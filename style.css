@@ -60,3 +60,9 @@ th{
     display: flex;
     flex-direction: column;
 }
+
+.ins{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}

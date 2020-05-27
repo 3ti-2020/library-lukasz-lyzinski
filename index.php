@@ -12,16 +12,46 @@
  <div class="item header"></div>
  <div class="item sidebar1">
  <form class="pasek" action="insert.php" method="post">
-    <input type="text" name="">
+    <input type="text" name="imie">
+    imie
+    <input type="text" name="nazwisko">
+    nazwisko
+    <input type="text" name="tytul">
+    tytul
+    <input type="text" name="ISBN">
+    ISBN
     <input type="submit" value="INSERT">
- </form>    
+ </form>
+<?php
+
+    require("connect.php");
+
+    $result_autor = $conn->query("SELECT * FROM autorzy");
+    $result_tytuly = $conn->query("SELECT * FROM tytuly");
+
+    echo("<form action='insert1.php' class='ins' method='POST'>");
+    echo("<select name='autor'>");
+    while($wiersz=$result_autor->fetch_assoc() ){
+        echo("<option value='".$wiersz['id_autor']."'>".$wiersz['imie']." ".$wiersz['nazwisko']."</option>");
+    }
+    echo("</select>");
+
+    echo("<select name='tytul1'>");
+    while($wiersz=$result_tytuly->fetch_assoc() ){
+        echo("<option value='".$wiersz['id_tytul']."'>".$wiersz['tytul']."</option>");
+    }
+    echo("</select>");
+
+    echo("<input type='submit' value='INSERT'>");
+    echo("</form>");
+?>    
  </div>
  <div class="item main">
 <?php
 
     require("connect.php");
 
-    $result=$conn->query("SELECT id_krzyz,imie, nazwisko, tytul, ISBN FROM krzyz, autorzy, tytuly WHERE krzyz.id_autor=autorzy.id AND krzyz.id_tytul=tytuly.id");
+    $result=$conn->query("SELECT id_krzyz,imie, nazwisko, tytul, ISBN from krzyz, autorzy, tytuly where krzyz.id_autor=autorzy.id_autor and krzyz.id_tytul=tytuly.id_tytul");
 
     echo("<table class='tabelka'>");
     echo("<tr>

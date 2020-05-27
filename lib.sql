@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 27 Maj 2020, 19:29
+-- Czas generowania: 27 Maj 2020, 21:54
 -- Wersja serwera: 10.1.37-MariaDB
 -- Wersja PHP: 7.2.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `autorzy` (
-  `id` int(11) NOT NULL,
+  `id_autor` int(11) NOT NULL,
   `imie` text NOT NULL,
   `nazwisko` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -38,11 +38,12 @@ CREATE TABLE `autorzy` (
 -- Zrzut danych tabeli `autorzy`
 --
 
-INSERT INTO `autorzy` (`id`, `imie`, `nazwisko`) VALUES
+INSERT INTO `autorzy` (`id_autor`, `imie`, `nazwisko`) VALUES
 (1, 'Joseph', 'Conrad\r\n'),
 (2, ' Miguel', 'Cervantes'),
 (3, 'Aleksander', 'Fredro'),
-(4, 'Juliusz', 'Slowacki');
+(4, 'Juliusz', 'Slowacki'),
+(6, 'cze', 'cze');
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,8 @@ INSERT INTO `krzyz` (`id_krzyz`, `id_autor`, `id_tytul`) VALUES
 (1, 1, 2),
 (2, 2, 1),
 (3, 3, 4),
-(4, 4, 3);
+(4, 4, 3),
+(5, 6, 5);
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,7 @@ INSERT INTO `krzyz` (`id_krzyz`, `id_autor`, `id_tytul`) VALUES
 --
 
 CREATE TABLE `tytuly` (
-  `id` int(11) NOT NULL,
+  `id_tytul` int(11) NOT NULL,
   `tytul` text NOT NULL,
   `ISBN` bigint(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -82,11 +84,12 @@ CREATE TABLE `tytuly` (
 -- Zrzut danych tabeli `tytuly`
 --
 
-INSERT INTO `tytuly` (`id`, `tytul`, `ISBN`) VALUES
+INSERT INTO `tytuly` (`id_tytul`, `tytul`, `ISBN`) VALUES
 (1, 'Don Kichot', 9781400132171),
 (2, 'Jadro ciemnnosci', 9781094013336),
 (3, 'Balladyna', 9788304014893),
-(4, 'Zemsta', 9788304016934);
+(4, 'Zemsta', 9788304016934),
+(5, 'cze', 123123123);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -96,7 +99,7 @@ INSERT INTO `tytuly` (`id`, `tytul`, `ISBN`) VALUES
 -- Indeksy dla tabeli `autorzy`
 --
 ALTER TABLE `autorzy`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_autor`);
 
 --
 -- Indeksy dla tabeli `krzyz`
@@ -110,7 +113,7 @@ ALTER TABLE `krzyz`
 -- Indeksy dla tabeli `tytuly`
 --
 ALTER TABLE `tytuly`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_tytul`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -120,19 +123,19 @@ ALTER TABLE `tytuly`
 -- AUTO_INCREMENT dla tabeli `autorzy`
 --
 ALTER TABLE `autorzy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT dla tabeli `krzyz`
 --
 ALTER TABLE `krzyz`
-  MODIFY `id_krzyz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_krzyz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT dla tabeli `tytuly`
 --
 ALTER TABLE `tytuly`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_tytul` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -142,8 +145,8 @@ ALTER TABLE `tytuly`
 -- Ograniczenia dla tabeli `krzyz`
 --
 ALTER TABLE `krzyz`
-  ADD CONSTRAINT `autorzy` FOREIGN KEY (`id_autor`) REFERENCES `autorzy` (`id`),
-  ADD CONSTRAINT `tytuly` FOREIGN KEY (`id_tytul`) REFERENCES `tytuly` (`id`);
+  ADD CONSTRAINT `autorzy` FOREIGN KEY (`id_autor`) REFERENCES `autorzy` (`id_autor`),
+  ADD CONSTRAINT `tytuly` FOREIGN KEY (`id_tytul`) REFERENCES `tytuly` (`id_tytul`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
