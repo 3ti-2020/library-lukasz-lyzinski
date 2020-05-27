@@ -1,3 +1,62 @@
-body {
-color: black;
+.container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(4,1fr);
+    grid-template-areas: 
+    "header header header header"
+    "sidebar1 main main main"
+    "sidebar1 main main main"
+    "sidebar1 main main main"
+    ;
+}
+
+.item{
+    margin: 2px;
+    background-color: teal;
+}
+
+.header{
+    grid-area: header;
+    
+}
+
+.sidebar1{
+    grid-area: sidebar1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.main{
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+}
+
+.tabelka,th,td{
+    border: 1px solid red;
+    border-collapse: collapse;
+    padding: 1rem;
+    margin: 50px;
+}
+
+.row{
+    background-color: white;
+    text-align: center;
+}
+
+.kol{
+    border: 1px solid red;
+}
+
+th{
+    padding: 2rem;
+    background-color: beige;
+}
+
+.pasek{
+    display: flex;
+    flex-direction: column;
 }
